@@ -1,6 +1,8 @@
 import PyPDF2 as pdf
 from gtts import gTTS
 
+#gui will be built using 
+
 
 #taking in the pdf file and converting it to a word
 
