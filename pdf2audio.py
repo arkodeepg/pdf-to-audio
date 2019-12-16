@@ -2,7 +2,7 @@ import PyPDF2 as pdf
 from gtts import gTTS
 
 
-    #taking in the pdf file and converting it to a word
+#taking in the pdf file and converting it to a word
 
 pdfFileObject = open('test2.pdf','rb')
 pdfReader = pdf.PdfFileReader(pdfFileObject)
