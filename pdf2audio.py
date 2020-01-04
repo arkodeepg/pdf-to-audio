@@ -1,26 +1,22 @@
 import PyPDF2 as pdf
 from gtts import gTTS
 
-#gui will be built using 
+def p2a(openLoc, saveLoc):
+    pdfFileObject = open(openLoc,'rb')
+    pdfReader = pdf.PdfFileReader(pdfFileObject)
+    pg = pdfReader.getNumPages()
+    print(pg)
 
+    finalDoc = ""
 
-#taking in the pdf file and converting it to a word
+    for i in range(0,pg):
+        pageObj = pdfReader.getPage(i)
+        finalDoc += (" " + pageObj.extractText().strip())
 
-pdfFileObject = open('test2.pdf','rb')
-pdfReader = pdf.PdfFileReader(pdfFileObject)
-pg = pdfReader.getNumPages()
-print(pg)
+    #converting text present in finalDoc to speech
 
-finalDoc = ""
+    #selecting the language
+    language = 'en'
+    myObj = gTTS(text = finalDoc, lang = language, slow = False)
 
-for i in range(0,pg):
-    pageObj = pdfReader.getPage(i)
-    finalDoc += (" " + pageObj.extractText().strip())
-
-#converting text present in finalDoc to speech
-
-#selecting the language
-language = 'en'
-myObj = gTTS(text = finalDoc, lang = language, slow = False)
-
-myObj.save("testAudio.mp3")
+    myObj.save(saveLoc+".mp3")
